@@ -1,0 +1,178 @@
+:root {
+          --blue-color: #0d9fe5;
+          --red-color: #d01822;
+          --white: #ffffff;
+          --light-text: #b3b3b3;
+          --dark-text: #999;
+}
+
+.btn {
+          border-radius: 40px;
+          min-width: 90px;
+          text-align: center;
+          justify-content: center;
+          padding: 8px 16px;
+          color: var(--red-color);
+          background-color: #fff;
+          font-size: 17px;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          transition: all 0.2s ease;
+          border: 2px solid #fff;
+      }
+      
+      .btn-blue {
+          color: #fff;
+          border-color: var(--red-color);
+          background-color: var(--red-color);
+      }
+      
+      .btn i {
+          color: var(--red-color);
+          margin: 0 10px;
+          transition: all 0.2s ease;
+      }
+      
+      .btn.btn-blue i {
+          color: #fff;
+      }
+      
+      .btn:hover {
+          color: #fff;
+          background-color: transparent;
+      }
+      
+      .btn:hover i {
+          color: #fff;
+      }
+      
+      .btn.btn-blue:hover {
+          color: var(--red-color);
+          background-color: transparent;
+      }
+      
+      .btn.btn-blue:hover i {
+          color: var(--red-color);
+      }
+      
+      
+      .mt-1 {
+          margin-top: 20px;
+      }
+      
+      
+      .mt-2 {
+          margin-top: 40px;
+      }
+      
+      .mt-3 {
+          margin-top: 60px;
+      }
+      
+      .mt-4 {
+          margin-top: 80px;
+      }
+      
+      
+      .flex {
+          display: flex;
+      }
+      
+      .align-center {
+          align-items: center;
+      }
+      
+      .column-dir {
+          flex-direction: column;
+      }
+      
+      .row-dir {
+          flex-direction: row;
+      }
+      
+      .form-group {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+          margin-bottom: 20px;
+      }
+      
+      .form-group label {
+          color: var(--dark-text);
+          font-size: 14px;
+          font-weight: bold;
+      }
+      .form-group select{
+          outline: none;
+          background-color: #fff;
+      }
+      
+      .form-group select option{
+          color: var(--dark-text);
+      } 
+      
+      .form-group input, .form-group select {
+          padding: 8px 16px;
+          border: 1px solid #c9c6c6f3;
+          border-radius: 10px;
+          color: var(--dark-text);
+          width: 100%;
+          margin-top: 10px;
+      }
+      
+      
+      .form-group input:focus, .form-group select:focus {
+          border-color: var(--red-color);
+          color: var(--red-color);
+      }
+      
+      .form-group input::placeholder, .form-group select {
+          color: var(--light-text);
+      }
+      
+      .form-group input.correct {
+          border-color: green;
+          color: green;
+      }
+      
+      .form-group input.error {
+          border-color: red;
+          color: red;
+      }
+      
+      .form-group .errors {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: column;
+      }
+      
+      .form-group .errors p {
+          font-size: 12px;
+          font-weight: normal;
+          color: red;
+      }
+      
+      
+      .form-group .help-note {
+          font-size: 12px;
+          color: var(--light-text);
+          font-weight: bold;
+      }
+      
+      .form-group input[type=number] {
+          direction: ltr;
+          text-align: right;
+      }
+      
+      .form-group input[type=number]::-webkit-outer-spin-button,
+      .form-group input[type=number]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+      }
+      
+      /* Firefox */
+      .form-group input[type=number] {
+          -moz-appearance: textfield;
+      }

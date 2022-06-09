@@ -1,0 +1,85 @@
+import 'package:spiderwick/models/actor_model.dart';
+import 'package:spiderwick/models/pre_model.dart';
+
+class TotalModel {
+  final String? story;
+  final List<ActorModel>? actors;
+  final List<PreModel>? related;
+  final List<Map<String, String>>? details;
+  TotalModel({this.story, this.actors, this.related, this.details});
+
+  static List<Map<String, String>>? detailsFromString(String? detailsStr) {
+    if (detailsStr != null) {
+      List<String> list1v = detailsStr.split('__');
+      List<Map<String, String>> list2 = [];
+      for (var element in list1v) {
+        List<String> list3 = element.split('_');
+        list2.add({list3[0]: list3[1]});
+      }
+      return list2;
+    }
+    return null;
+  }
+
+  static TotalModel fromJson(Map<String, Object?> json) {
+    TotalModel movie = TotalModel(
+      story: json["story"] as String?,
+      actors: (json["actors"] as List?)
+          !.map((e) => ActorModel.fromJson(e))
+          .toList(),
+      details: detailsFromString(json['details'] as String?),
+      related:
+          (json['related'] as List?)?.map((e) => PreModel.fromJson(e)).toList(),
+    );
+    return movie;
+  }
+}
+
+  Future<TotalResponse> getSingle(String link) async {
+    try {
+      Response response = await _dio.get("$getSingleUrl?link=$link");
+      return TotalResponse.fromJSON(jsonDecode(jsonEncode(response.data)));
+    } catch (error, stacktrace) {
+      print('Exception occured: $error stackTrace: $stacktrace');
+      return TotalResponse.withError("$error");
+    }
+  }
+
+class TotalResponse {
+  final TotalModel? total;
+  final String error;
+
+
+  TotalResponse.fromJSON(Map<String, dynamic> json)
+      : total = (json['result'] as List).isNotEmpty ? TotalModel.fromJson(json['result'][0]) : null,
+        error = "";
+
+  TotalResponse.withError(String errorValue)
+      : total = null,
+        error = errorValue;
+}
+
+
+
+class ActorModel {
+  final String name;
+  final String image;
+
+  ActorModel({required this.name, required this.image});
+
+  static List<ActorModel>? fromString(String? json) {
+    if (json != null) {
+      List<List<String>> back =
+          json.split('__').map((e) => e.split('_')).toList();
+      return back.map((e) => ActorModel(name: e[0], image: e[1])).toList();
+    }
+    return null;
+  }
+
+  static ActorModel fromJson(Map<String, String> json) {
+    return ActorModel(
+      name: json['name'] as String,
+      image: json["image"] as String,
+    );
+  }
+}
